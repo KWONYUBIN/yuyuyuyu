@@ -17,10 +17,19 @@
     <textarea name="" id="" cols="30" rows="10" readonly>${board.content}</textarea>
 </div>
 <div>
-    작성자<input type="text" value="${board.writer}" readonly>
+    작성자
+    <input type="text" value="${board.writer}" readonly>
 </div>
 <div>
-    작성일자<input type="text" value="${board.inserted}" readonly>
+    작성일시
+    <input type="text" value="${board.inserted}" readonly>
+</div>
+
+<div>
+    <form action="/board/delete" method="post">
+        <input type="hidden" name="id" value="${board.id}">
+        <button>삭제</button>
+    </form>
 </div>
 
 </body>
