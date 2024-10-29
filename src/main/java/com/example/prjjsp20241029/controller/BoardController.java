@@ -1,13 +1,17 @@
 package com.example.prjjsp20241029.controller;
 
+
 import com.example.prjjsp20241029.dto.Board;
 import com.example.prjjsp20241029.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,6 +32,12 @@ public class BoardController {
     public String newBoard(Board board) {
        service.add(board);
 
-       return "redirect:/board/new";
+       return "redirect:/board/list";
+    }
+
+    @GetMapping("list")
+    public void listBoard(Model model) {
+        List<Board> list = service.list();
+        model.addAttribute("boardList", list);
     }
 }
