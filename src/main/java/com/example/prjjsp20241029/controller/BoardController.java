@@ -40,4 +40,10 @@ public class BoardController {
         List<Board> list = service.list();
         model.addAttribute("boardList", list);
     }
+
+    @GetMapping("view")
+    public void viewBoard(Integer id, Model model) {
+        Board board = service.get(id);
+        model.addAttribute("board", board);
+    }
 }

@@ -22,7 +22,12 @@
   <c:forEach items="${boardList}" var="board">
     <tr>
       <td>${board.id}</td>
-      <td>${board.title}</td>
+      <td>
+<%--       ${board.title}을 누르면 /board/view?id=${board.id}로 간다는 뜻 --%>
+        <a href="/board/view?id=${board.id}">
+          ${board.title}
+        </a>
+      </td>
       <td>${board.writer}</td>
       <td>${board.inserted}</td>
     </tr>
