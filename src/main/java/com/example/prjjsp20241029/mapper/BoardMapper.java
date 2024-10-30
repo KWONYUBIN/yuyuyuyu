@@ -13,6 +13,8 @@ public interface BoardMapper {
             (title, content, writer)
             VALUES (#{title}, #{content}, #{writer})
             """)
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+        // new 에 id가 없으니까 redirect 를 해도 값을 못 받아서 옵션을 추가함
     int insert(Board board);
 
     @Select("""
