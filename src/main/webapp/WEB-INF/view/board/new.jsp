@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -11,7 +11,9 @@
 </head>
 <body>
 
-<c:import url="/WEB-INF/fragment/navbar.jsp"/>
+<c:import url="/WEB-INF/fragment/navbar.jsp">
+    <c:param name="active" value="new"/> <%--active 파라미터가 new에 붙어서 나옴--%>
+</c:import>
 
 <h2>새 게시물 작성</h2>
 <form method="post">
