@@ -19,8 +19,8 @@
 </c:import>
 
 <div class="container">
-    <div class="row">
-        <div class="col">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-9">
 
             <h2 class="my-3">새 게시물 작성</h2>
 
