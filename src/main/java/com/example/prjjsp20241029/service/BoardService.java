@@ -39,12 +39,21 @@ public class BoardService {
         Integer lastPageNumber = (countAll -1) / 10 + 1; // 마지막 페이지 번호(int 연산)
         Integer rightPageNumber = ((page - 1) / 10 + 1) * 10; // 현재페이지 기준 오른쪽 끝 페이지 번호
         Integer leftPageNumber = rightPageNumber - 9; // 현재페이지 기준 왼쪽 끝 페이지 번호
+        Integer nextPageNumber = rightPageNumber + 1; // 다음 버튼 클릭시 이동하는 페이지
+        Integer prevPageNumber = leftPageNumber - 1; // 이전 버튼 클릭시 이동하는 페이지
+
+        Boolean hasNextPage = nextPageNumber < lastPageNumber; // 다음 버튼 유무
+        Boolean hasPrevPage = prevPageNumber > 0; // 이전 버튼 유무
 
         // 오른쪽 끝 페이지는 마지막 페이지보다 클 수 없음
         rightPageNumber = Math.min(rightPageNumber, lastPageNumber);
 
         Map<String, Object> pageInfo = new HashMap<>();
 
+        pageInfo.put("hasNextPage", hasNextPage);
+        pageInfo.put("hasPrevPage", hasPrevPage);
+        pageInfo.put("nextPageNumber", nextPageNumber);
+        pageInfo.put("prevPageNumber", prevPageNumber);
         pageInfo.put("leftPageNumber", leftPageNumber);
         pageInfo.put("rightPageNumber", rightPageNumber);
         pageInfo.put("lastPageNumber", lastPageNumber);
@@ -69,3 +78,5 @@ public class BoardService {
         mapper.update(board);
     }
 }
+
+// 실제 일은 Service 에서 함

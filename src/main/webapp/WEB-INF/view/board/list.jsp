@@ -28,7 +28,7 @@
         <tr>
             <td>${board.id}</td>
             <td>
-               <%--${board.title}을 누르면 /board/view?id=${board.id}로 간다는 뜻 --%>
+                    <%--${board.title}을 누르면 /board/view?id=${board.id}로 간다는 뜻 --%>
                 <a href="/board/view?id=${board.id}">
                         ${board.title}
                 </a>
@@ -40,16 +40,24 @@
     </tbody>
 </table>
 
-    <%--  pagenation--%>
+<%--  pagenation--%>
 <div>
+    <%--   이전버튼 --%>
+    <c:if test="${pageInfo.hasPrevPage}">
+        <a href="/board/list?page=${pageInfo.prevPageNumber}">이전</a>
+    </c:if>
     <c:forEach begin="${pageInfo.leftPageNumber}"
                end="${pageInfo.rightPageNumber}"
                var="pageNumber">
-<%-- 현재 페이지에서 currentpage와 pagenumber가 같거나 다를 때
-        같으면 active 추가 다르면 active추가 x--%>
+        <%-- 현재 페이지에서 currentpage와 pagenumber가 같거나 다를 때
+                같으면 active 추가 다르면 active추가 x--%>
         <a class="${pageInfo.currentPageNumber == pageNumber ? 'active' : ''}"
-                href="/board/list?page=${pageNumber}">${pageNumber}</a>
+           href="/board/list?page=${pageNumber}">${pageNumber}</a>
     </c:forEach>
+    <%--    다음버튼--%>
+    <c:if test="${pageInfo.hasNextPage}">
+        <a href="/board/list?page=${pageInfo.nextPageNumber}">다음</a>
+    </c:if>
 </div>
 </body>
 </html>
