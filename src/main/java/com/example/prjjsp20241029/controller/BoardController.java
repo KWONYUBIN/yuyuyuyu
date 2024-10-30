@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,7 +34,11 @@ public class BoardController {
     public String newBoard(Board board, RedirectAttributes rttr) {
        service.add(board);
 
+       rttr.addFlashAttribute("message",
+               Map.of("type","success",
+               "text", "새 게시물이 등록되었습니다."));
        rttr.addAttribute("id", board.getId());
+
        return "redirect:/board/view";
     }
 
