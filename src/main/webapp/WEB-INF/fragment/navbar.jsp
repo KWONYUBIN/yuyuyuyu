@@ -11,13 +11,24 @@
 
     <c:if test="${not empty message}">
         <style>
+            h5 {
+                padding: 10px;
+            }
             .success {
                 background-color: skyblue;
+            }
+
+            .warning {
+                background-color: darkorange;
+            }
+
+            .save {
+                background-color: darkorange;
             }
         </style>
         <div class="${message.type}">
             <h5>
-                ${message.text}
+                    ${message.text}
             </h5>
         </div>
     </c:if>
