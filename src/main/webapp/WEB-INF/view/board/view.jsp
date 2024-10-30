@@ -31,6 +31,8 @@
         <button>삭제</button>
     </form>
 </div>
+<%--이동해야하니까 a태그사용--%>
+<a href="/board/edit?id=${board.id}">수정</a>
 
 </body>
 </html>
