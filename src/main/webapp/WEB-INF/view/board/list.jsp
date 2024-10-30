@@ -17,34 +17,87 @@
     <c:param name="active" value="list"/>  <%--active 파라미터가 list에 붙어서 나옴--%>
 </c:import>
 
-<h2>게시물 목록</h2>
-<table>
-    <thead>
-    <tr>
-        <td>번호</td>
-        <td>제목</td>
-        <td>작성자</td>
-        <td>작성일시</td>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${boardList}" var="board">
-        <tr>
-            <td>${board.id}</td>
-            <td>
-                    <%--${board.title}을 누르면 /board/view?id=${board.id}로 간다는 뜻 --%>
-                <a href="/board/view?id=${board.id}">
-                        ${board.title}
-                </a>
-            </td>
-            <td>${board.writer}</td>
-            <td>${board.inserted}</td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+<%--div.container>div.row>div.col--%>
+<div class="container">
+    <div class="row">
+        <div class="col">
 
-<%--  pagenation--%>
+            <h2 class="my-3 ">게시물 목록</h2>
+            <table class="table"> <%-- bootstrap에 table형식을 적용함 (class="table") --%>
+                <thead>
+                <tr>
+                    <td>
+                        <%--                        넘버--%>
+                        <i class="fa-solid fa-hashtag"></i>
+                    </td>
+                    <%--                    w-50 = with-50 (너비가 50%라는 뜻)     --%>
+                    <td class="w-50">제목</td>
+                    <td>
+                        <%--                        작성자--%>
+                        <i class="fa-solid fa-user"></i>
+                    </td>
+                    <%-- d-none = display-none -> 안 보이게 하는 거 --%>
+                    <%-- d-lg-table-cell -> large에서는 보이게 --%>
+                    <%-- large보다 작을 때는 작성일시 숨기기--%>
+                    <td class="d-none d-lg-table-cell">
+                        <%--                        작성일시--%>
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${boardList}" var="board">
+                    <tr>
+                        <td>${board.id}</td>
+                        <td>
+                                <%--${board.title}을 누르면 /board/view?id=${board.id}로 간다는 뜻 --%>
+                            <a href="/board/view?id=${board.id}">
+                                    ${board.title}
+                            </a>
+                        </td>
+                        <td>${board.writer}</td>
+                            <%-- d-none = display-none -> 안 보이게 하는 거 --%>
+                            <%-- d-lg-table-cell -> large에서는 보이게 --%>
+                            <%-- large보다 작을 때는 작성일시 숨기기--%>
+                        <td class="d-none d-lg-table-cell">${board.inserted}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%-- bootstrap pagination --%>
+<nav class="mt-4">
+    <ul class="pagination justify-content-center">
+        <%-- 이전버튼--%>
+        <c:if test="${pageInfo.hasPrevPage}">
+            <li class="page-item ">
+                <a href="/board/list?page=${pageInfo.prevPageNumber}" class="page-link">
+                    &laquo;
+                </a>
+            </li>
+        </c:if>
+        <c:forEach begin="${pageInfo.leftPageNumber}"
+                   end="${pageInfo.rightPageNumber}"
+                   var="pageNumber">
+            <li class="page-item ${pageInfo.currentPageNumber == pageNumber ? 'active' : ''}">
+                <a href="/board/list?page=${pageNumber}" class="page-link">${pageNumber}</a> <%-- 숫자--%>
+            </li>
+            <%-- 다음버튼--%>
+        </c:forEach>
+        <c:if test="${pageInfo.hasNextPage}">
+            <li class="page-item">
+                <a href="/board/list?page=${pageInfo.nextPageNumber}" class="page-link">
+                    &raquo;
+                </a>
+            </li>
+        </c:if>
+    </ul>
+</nav>
+
+<%--  pagination--%>
 <div>
     <%--   이전버튼 --%>
     <c:if test="${pageInfo.hasPrevPage}">
