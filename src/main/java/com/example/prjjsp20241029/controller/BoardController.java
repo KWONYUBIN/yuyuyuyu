@@ -42,9 +42,14 @@ public class BoardController {
        return "redirect:/board/view";
     }
 
+    // /board/list?page=1
     @GetMapping("list")
-    public void listBoard(Model model) {
-        List<Board> list = service.list();
+    public void listBoard(@RequestParam(name = "page", defaultValue = "1") Integer page ,
+                          Model model) {
+        // 한 페이지에 10개의 게시물
+
+
+        List<Board> list = service.list(page);
         model.addAttribute("boardList", list);
     }
 
